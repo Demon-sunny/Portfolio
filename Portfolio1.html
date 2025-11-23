@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAMIDI SHANMUKH RAJ | Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJc/E5542fyeLhU5l7T2d7kFv2u1Pz+s8LzGz/h5y0l/h7mYt5P0Xn7g2w0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS Variables for Theme */
+        :root {
+            --bg-main: #f9fafb; /* light gray */
+            --bg-card: #ffffff; /* white */
+            --bg-sidebar: #f3f4f6; /* light light gray */
+            --text-main: #1f2937; /* dark gray */
+        }
+
+        .dark {
+            --bg-main: #0f172a; /* dark blue/slate */
+            --bg-card: #1e293b; /* slate 800 */
+            --bg-sidebar: #0f172a; /* dark blue/slate */
+            --text-main: #f3f4f6; /* light gray */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [style*="background-color: var(--bg-main)"],
+        [style*="background-color: var(--bg-card)"],
+        [style*="background-color: var(--bg-sidebar)"] {
+            transition: background-color 0.3s ease;
+        }
+
+        /* Custom utility class to simulate dynamic progress bar fill */
+        .progress-bar {
+            background: linear-gradient(90deg, #3b82f6, #6366f1, #9333ea);
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        /* Ensure Skills h4 are always black in light mode */
+        html:not(.dark) #skills h4 {
+            color: #000000 !important;
+        }
+
+        /* Sidebar text color + transitions */
+        #sidebar-nav a {
+            color: #000 !important;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        html.dark #sidebar-nav a {
+            color: #f3f4f6 !important;
+        }
+
+        /* Light theme hover: blue */
+        html:not(.dark) #sidebar-nav a:hover {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+        }
+
+        /* Dark theme hover: subtle gray */
+        html.dark #sidebar-nav a:hover {
+            background-color: #1f2937 !important;
+        }
+
+        /* Active link (scroll-based) */
+        #sidebar-nav a.active {
+            background-color: #2563eb !important; /* blue-600 */
+            color: #ffffff !important;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+        }
+        /* FIX light theme text visibility */
+html:not(.dark) .text-gray-600,
+html:not(.dark) .text-gray-500,
+html:not(.dark) .text-gray-400 {
+    color: #374151 !important; /* gray-700 */
+}
+html:not(.dark) #training ul {
+    color: #000 !important;
+}
+
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <script>
+        // Updated and categorized skills data
+        const categorizedSkills = {
+            'Languages': [
+                { name: "C", level: 95, icon: 'fa-code' },
+                { name: "C++", level: 85, icon: 'fa-code' },
+                { name: "JavaScript", level: 80, icon: 'fa-js' },
+                { name: "PHP", level: 75, icon: 'fa-php' },
+                { name: "Python", level: 80, icon: 'fa-python' }
+            ],
+            'Web Technologies': [
+                { name: "HTML", level: 90, icon: 'fa-html5' },
+                { name: "CSS", level: 88, icon: 'fa-css3-alt' },
+                { name: "Tailwind CSS", level: 85, icon: 'fa-wind' }
+            ],
+            'Frameworks': [
+                { name: "React", level: 70, icon: 'fa-react' },
+                { name: "Node.js", level: 65, icon: 'fa-node-js' }
+            ],
+            'Tools & Platforms': [
+                { name: "GitHub", level: 90, icon: 'fa-github' },
+                { name: "VS Code", level: 95, icon: 'fa-laptop-code' },
+                { name: "MongoDB", level: 60, icon: 'fa-database' },
+                { name: "MySQL (Basics)", level: 50, icon: 'fa-database' },
+                { name: "WordPress", level: 55, icon: 'fa-wordpress' }
+            ],
+            'Soft Skills': [
+                'Problem-Solving', 
+                'Project Management', 
+                'Adaptability', 
+                'Communication', 
+                'Team Collaboration'
+            ]
+        };
+
+        const projects = [
+            {
+                title: "Material Management During Disaster",
+                tech: "Tailwind CSS, PHP, JavaScript",
+                desc: "Crafted a web-based disaster relief management platform to monitor, allocate, and track essential resources in real time.",
+                impact: "Elevated tracking accuracy and distribution efficiency by 30% through reduction of manual errors and refinement of response workflows.",
+                link: "https://github.com/Demon-sunny/Mgmt-of-material-during-Disaster--receipt-availability-movement-and-its-receipt-to-the-last-person",
+            },
+            {
+                title: "Secure Authentication Module",
+                tech: "C++",
+                desc: "Engineered a multi-layer authentication mechanism integrating OTP generation, CAPTCHA verification, and passkey validation.",
+                impact: "Strengthened system security by over 35% in controlled test scenarios, mitigating potential authentication vulnerabilities.",
+                link: "https://github.com/Demon-sunny/Secure-Authentication-Module-",
+            },
+            {
+                title: "Currency Converter Bot",
+                tech: "HTML, CSS, PHP",
+                desc: "Developed an interactive currency conversion tool delivering accurate, real-time exchange computations with a smooth interface.",
+                impact: "Optimized backend computations, accelerating processing speed and enhancing overall system reliability.",
+                link: "https://github.com/Demon-sunny/Currency-Converter-Bot",
+            },
+        ];
+
+        const certificates = [
+            { name: "Introduction to Internet of Things - NPTEL", link: "https://drive.google.com/file/d/1MtOpGEW94L7aaLKwpshV1USGZQokldXX/preview" },
+            { name: "Generative AI Workshop - AGI Scholars", link: "https://drive.google.com/file/d/1-wkm2WY6Ijow61pbFFJG4wN1cowDLefO/preview" },
+            { name: "TCP/IP and Advanced Topics - Coursera", link: "https://drive.google.com/file/d/1-1gbhbfBQDCv5vc6Fb6kORgmD9ESGdIz/preview" },
+            { name: "Introduction to Hardware and Operating Systems - Coursera", link: "https://drive.google.com/file/d/10iRVYhi8oj4zZDNdVi7j5zf6rIDUmTMB/preview" },
+            { name: "The Bits and Bytes of Computer Networking - Coursera", link: "https://drive.google.com/file/d/10gcFa0sqlAVc5SDL0HpHR3NmhELvtU5H/preview" },
+        ];
+    </script>
+
+    <div class="flex">
+        <aside 
+            class="w-64 shadow-xl p-6 hidden md:block sticky-sidebar transition-colors duration-300"
+            style="background-color: var(--bg-sidebar); color: var(--text-main);"
+        >
+            <h3 class="text-xl font-bold mb-6 text-center text-blue-600">Navigation</h3>
+            <nav id="sidebar-nav" class="space-y-2">
+                <a href="#about" data-section-id="about" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">👤 About Me</a>
+                <a href="#skills" data-section-id="skills" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">💻 Skills & Proficiency</a>
+                <a href="#projects" data-section-id="projects" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">📁 Projects</a>
+                <a href="#training" data-section-id="training" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">🧪 Training</a>
+                <a href="#certs" data-section-id="certs" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">🏅 Certifications</a>
+                <a href="#education" data-section-id="education" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">🎓 Education</a>
+                <a href="#contact" data-section-id="contact" class="block py-2 px-4 text-sm font-medium rounded-lg transition-colors duration-200">📧 Contact</a>
+            </nav>
+        </aside>
+
+        <div 
+            class="flex-1 min-h-screen"
+            style="background-color: var(--bg-main); color: var(--text-main);"
+        >
+            <header
+                class="w-full shadow-lg sticky top-0 z-10 p-4"
+                style="background-color: var(--bg-card);"
+            >
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <img
+                            src="sunny.jpg" 
+                            alt="Profile"
+                            class="w-20 h-20 rounded-full border-3 border-blue-500 shadow-lg object-cover"
+                        />
+                        <div class="space-y-1">
+                            <h1 class="text-2xl font-bold">PAMIDI SHANMUKH RAJ</h1>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Computer Science & Engineering Student</p>
+                            <div class="flex items-center gap-4 pt-1">
+                                <a href="http://www.linkedin.com/in/pshanmukh-raj/" target="_blank" rel="noreferrer" class="flex items-center gap-1 text-blue-600 hover:text-blue-500"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                                <a href="https://github.com/Demon-sunny" target="_blank" rel="noreferrer" class="flex items-center gap-1 hover:text-blue-500"><i class="fab fa-github"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button
+                        id="theme-toggle"
+                        class="ml-auto md:ml-0 text-xl border border-gray-300 dark:border-gray-600 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                    >
+                        <span class="hidden dark:block text-2xl">🌙</span>
+                        <span class="dark:hidden text-lg">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="w-full space-y-24 py-20 px-10 md:px-16 lg:px-24">
+
+                <section id="about" class="max-w-6xl mx-auto"> 
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        👤 Summary 
+                    </h2>
+                    <div 
+                        data-animate="fade-in"
+                        class="rounded-xl shadow-xl p-10 md:p-12" 
+                        style="background-color: var(--bg-card);"
+                    >
+                        <p className="max-w-3xl text-sm md:text-base leading-relaxed">
+  Computer Science student skilled in <strong>full-stack development</strong>, 
+  <strong>authentication systems</strong>, and <strong>automation</strong>, with expertise in 
+  <strong> C/C++</strong>, <strong>Python</strong>, <strong>JavaScript</strong>, 
+  <strong>PHP</strong>, <strong>React</strong>, and <strong>Tailwind CSS</strong>. 
+  Experienced in developing <strong>real-time platforms</strong> that enhance efficiency and accuracy, 
+  including a <strong>disaster resource management system</strong> with 
+  <strong> 30% performance improvement</strong>. Strong <strong>communication</strong>, 
+  <strong>teamwork</strong>, and <strong>project execution</strong> abilities supported by 
+  multiple industry certifications.
+</p>
+
+                    </div>
+                </section>
+
+                <hr class="w-3/4 mx-auto border-gray-300 dark:border-gray-700" />
+
+                <section id="skills" class="max-w-7xl mx-auto"> 
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        💻 Skills
+                    </h2>
+                    <div
+                        class="rounded-xl shadow-xl p-10 md:p-12" 
+                        style="background-color: var(--bg-card);"
+                    >
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="border p-4 rounded-lg dark:border-gray-700">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><i class="fas fa-laptop-code text-blue-500"></i> Languages</h4>
+                                <div id="list-languages" class="space-y-4"></div>
+                            </div>
+
+                            <div class="border p-4 rounded-lg dark:border-gray-700">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><i class="fas fa-globe text-blue-500"></i> Web Technologies</h4>
+                                <div id="list-web-tech" class="space-y-4"></div>
+                            </div>
+                            
+                            <div class="border p-4 rounded-lg dark:border-gray-700">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><i class="fas fa-layer-group text-blue-500"></i> Frameworks</h4>
+                                <div id="list-frameworks" class="space-y-4"></div>
+                            </div>
+
+                            <div class="lg:col-span-3 border p-4 rounded-lg dark:border-gray-700">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><i class="fas fa-wrench text-blue-500"></i> Tools & Platforms</h4>
+                                <div id="list-tools" class="flex flex-wrap gap-3"></div>
+                            </div>
+                            
+                            <div class="lg:col-span-3 border p-4 rounded-lg dark:border-gray-700">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><i class="fas fa-users-gear text-blue-500"></i> Soft Skills</h4>
+                                <div id="list-soft-skills" class="flex flex-wrap gap-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="w-3/4 mx-auto border-gray-300 dark:border-gray-700" />
+
+                <section id="projects" class="max-w-7xl mx-auto"> 
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        📁 Projects 
+                    </h2>
+                    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10"></div>
+                </section>
+
+                <hr class="w-3/4 mx-auto border-gray-300 dark:border-gray-700" />
+                
+                <section id="training" class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        🧪 Training / Workshops
+                    </h2>
+                    <div
+                        class="rounded-xl shadow-xl p-10 md:p-12 space-y-8" 
+                        style="background-color: var(--bg-card);"
+                    >
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <h3 class="text-xl font-bold text-black dark:text-blue-600">
+    CSE-Pathshala | Basic Python towards ML/AI
+</h3>
+
+                            <p class="text-gray-600 dark:text-gray-400 mb-3 text-sm"></p>
+                                <button
+                                    data-cert-link="https://drive.google.com/file/d/1-gh-8kcc2O0feHAJT48YWZ4xSMHhkIqp/preview"
+                                    class="ml-3 text-blue-500 hover:underline cert-button"
+                                >(View Certificate)</button>
+                            </p>
+                            <ul class="list-disc ml-5 space-y-1 text-gray-900 dark:text-white text-sm">
+                                <li>Acquired strong foundational proficiency in Python for ML/AI, including data structures, control flow, and functional programming.</li>
+                                <li>Executed hands-on exercises in Google Colab involving data set operations, function building, and introductory ML workflows.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="certs" class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        🏅 Certifications
+                    </h2>
+                    <div
+                        class="rounded-xl shadow-xl p-10 md:p-12 space-y-8" 
+                        style="background-color: var(--bg-card);"
+                    >
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <h3 class="text-xl font-semibold mb-4 text-blue-600">Certificates</h3>
+                            <div id="certs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- JS will inject -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="w-3/4 mx-auto border-gray-300 dark:border-gray-700" />
+
+                <section id="education" class="max-w-6xl mx-auto"> 
+                    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+                        🎓 Education
+                    </h2>
+                    <div
+                        class="rounded-xl shadow-xl p-10 md:p-12" 
+                        style="background-color: var(--bg-card);"
+                    >
+                        <ul class="space-y-8 text-sm md:text-base">
+                            <li class="p-3 border-l-4 border-blue-500">
+                                <strong class="text-lg block">Lovely Professional University</strong>
+                                <span class="block text-gray-700 dark:text-gray-300">B.Tech CSE, Phagwara, Punjab</span>
+                                <span class="block text-sm text-gray-500">Aug’23 - Present</span>
+                                <span class="block font-semibold mt-1">CGPA: 8.01</span>
+                            </li>
+                            <li class="p-3 border-l-4 border-green-500">
+                                <strong class="text-lg block">Narayana Junior College</strong>
+                                <span class="block text-gray-700 dark:text-gray-300">Intermediate, Guntur, Andhra Pradesh</span>
+                                <span class="block text-sm text-gray-500">Apr’21 - Mar’23</span>
+                                <span class="block font-semibold mt-1">Percentage: 97.8%</span>
+                            </li>
+                            <li class="p-3 border-l-4 border-purple-500">
+                                <strong class="text-lg block">Loyola Public School</strong>
+                                <span class="block text-gray-700 dark:text-gray-300">Matriculation, Nallapadu, Andhra Pradesh</span>
+                                <span class="block text-sm text-gray-500">Apr’13 - Mar’20</span>
+                                <span class="block font-semibold mt-1">Percentage: 89.7%</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <hr class="w-3/4 mx-auto border-gray-300 dark:border-gray-700" />
+
+                <section id="contact" class="max-w-6xl mx-auto pb-10"> 
+    <h2 class="text-3xl font-extrabold mb-10 text-center text-blue-600 border-b-2 pb-2">
+        📧 Get In Touch
+    </h2>
+
+    <div class="rounded-xl p-10 md:p-12 shadow-xl border border-gray-300 bg-white dark:bg-white">
+        <form
+            action="mailto:shanmukhraj2997@gmail.com"
+            method="POST"
+            enctype="text/plain" 
+            class="space-y-6 max-w-lg mx-auto"
+        >
+            <div class="flex flex-col">
+                <label class="text-black dark:text-blue-600 font-semibold mb-1">Your Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    class="w-full border border-gray-400 rounded p-3 bg-white text-black focus:border-blue-600 outline-none"
+                    required
+                />
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-black dark:text-blue-600 font-semibold mb-1">Your Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    class="w-full border border-gray-400 rounded p-3 bg-white text-black focus:border-blue-600 outline-none"
+                    required
+                />
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-black dark:text-blue-600 font-semibold mb-1">Message</label>
+                <textarea
+                    name="message"
+                    placeholder="Type your message..."
+                    class="w-full border border-gray-400 rounded p-3 bg-white text-black focus:border-blue-600 outline-none"
+                    rows="5"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="flex justify-center">
+                <button
+                    type="submit"
+                    class="px-8 py-3 rounded-lg font-bold border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-300"
+                >
+                    Send Message
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+            </main>
+
+            <div id="cert-modal" class="fixed inset-0 bg-black/70 flex justify-end z-50 backdrop-blur-sm hidden">
+                <div id="cert-panel" class="w-full md:w-3/5 lg:w-1/2 h-full shadow-2xl p-6 flex flex-col transform translate-x-full transition-transform duration-300"
+                    style="background-color: var(--bg-card);"
+                >
+                    <button id="close-modal-btn" class="self-end mb-4 text-red-500 font-semibold text-lg hover:text-red-700 transition">
+                        Close (X)
+                    </button>
+                    <h3 class="text-xl font-bold mb-4 text-center">Certificate Preview</h3>
+                    <iframe
+                        id="cert-iframe"
+                        src=""
+                        title="Certificate Preview"
+                        class="w-full flex-1 border border-gray-300 dark:border-gray-600 rounded-lg"
+                        allow="fullscreen"
+                    ></iframe>
+                </div>
+            </div>
+
+            <footer 
+                class="text-center p-6 text-sm border-t"
+                style="background-color: var(--bg-sidebar); border-color: var(--text-main);"
+            >
+                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <h3 class="font-bold text-lg mb-2 text-blue-600">Contact Details:</h3>
+                    <p class="text-sm">📧 <a href="mailto:shanmukhraj2997@gmail.com" class="hover:underline">shanmukhraj2997@gmail.com</a></p>
+                    <p class="text-sm">📞 +91-6302221249</p>
+                </div>
+                © 2025 PAMIDI SHANMUKH RAJ. Built with HTML, Vanilla JS, and Tailwind CSS.
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.documentElement;
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const certModal = document.getElementById('cert-modal');
+            const certPanel = document.getElementById('cert-panel');
+            const certIframe = document.getElementById('cert-iframe');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const certsGrid = document.getElementById('certs-grid');
+            
+            // --- 1. Dark Mode Logic ---
+            const initializeTheme = () => {
+                const storedTheme = localStorage.getItem('theme');
+                const isDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                
+                if (isDark) {
+                    root.classList.add('dark');
+                } else {
+                    root.classList.remove('dark');
+                }
+            };
+
+            const toggleTheme = () => {
+                const isDark = root.classList.contains('dark');
+                if (isDark) {
+                    root.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    root.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            };
+
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            initializeTheme();
+
+            // --- 2. Dynamic Content Injection (Skills, Projects, Certs) ---
+            const setupSkills = () => {
+                const createSkillBar = (skill) => `
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1 text-base">
+                            <span class="font-semibold">${skill.name}</span>
+                            <span>${skill.level}%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-2 rounded-full progress-bar" style="width: 0%;" data-level="${skill.level}"></div>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('list-languages').innerHTML = categorizedSkills['Languages'].map(s => createSkillBar(s)).join('');
+                document.getElementById('list-web-tech').innerHTML = categorizedSkills['Web Technologies'].map(s => createSkillBar(s)).join('');
+                document.getElementById('list-frameworks').innerHTML = categorizedSkills['Frameworks'].map(s => createSkillBar(s)).join('');
+                
+                const listTools = document.getElementById('list-tools');
+                listTools.innerHTML = categorizedSkills['Tools & Platforms'].map(tool => `
+                    <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 py-1.5 px-3 rounded-full text-sm font-medium">
+                        ${tool.name}
+                    </span>
+                `).join('');
+
+                const listSoftSkills = document.getElementById('list-soft-skills');
+                listSoftSkills.innerHTML = categorizedSkills['Soft Skills'].map(skill => `
+                    <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 py-1.5 px-3 rounded-full text-sm font-medium border border-green-300 dark:border-green-700">
+                        ${skill}
+                    </span>
+                `).join('');
+            };
+            
+            // Inject Project Cards
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = projects.map(project => `
+                <div
+                    class="p-6 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition duration-300 cursor-pointer border border-blue-200 dark:border-blue-700"
+                    style="background-color: var(--bg-card);" 
+                    onclick="window.open('${project.link}', '_blank')"
+                >
+                    <h3 class="text-xl font-bold mb-2 text-blue-600">${project.title}</h3>
+                    <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3">${project.tech}</p>
+                    <p class="text-sm mb-3">${project.desc}</p>
+                    <p class="text-sm font-medium text-green-700 dark:text-green-400 pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <span class="font-bold">Impact:</span> ${project.impact}
+                    </p>
+                </div>
+            `).join('');
+
+            // Inject Certification Buttons
+            certsGrid.innerHTML = certificates.map(cert => `
+                <button
+                    data-cert-link="${cert.link}"
+                    class="cert-button text-left p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition text-sm md:text-base w-full flex items-center justify-between"
+                    style="background-color: var(--bg-card);" 
+                >
+                    <span class="truncate">📜 ${cert.name}</span>
+                    <span class="text-blue-500 text-xs font-semibold shrink-0 ml-2">VIEW</span>
+                </button>
+            `).join('');
+
+            // --- 3. Modal/Panel Logic ---
+            const openCertModal = (link) => {
+                certIframe.src = link;
+                certModal.classList.remove('hidden');
+                setTimeout(() => {
+                    certPanel.classList.remove('translate-x-full');
+                    certPanel.classList.add('translate-x-0');
+                }, 10);
+            };
+
+            const closeCertModal = () => {
+                certPanel.classList.remove('translate-x-0');
+                certPanel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    certModal.classList.add('hidden');
+                    certIframe.src = ''; 
+                }, 300); 
+            };
+
+            // Global listener for any .cert-button (Training + Certifications)
+            document.addEventListener('click', (e) => {
+                const button = e.target.closest('.cert-button');
+                if (!button) return;
+                const link = button.getAttribute('data-cert-link');
+                if (link) openCertModal(link);
+            });
+
+            closeModalBtn.addEventListener('click', closeCertModal);
+            certModal.addEventListener('click', (e) => {
+                if (e.target.id === 'cert-modal') {
+                    closeCertModal();
+                }
+            });
+
+            // --- 4. Intersection Observer for Skills Bar Fill and Sidebar ---
+            const skillObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const level = progressBar.getAttribute('data-level');
+                        setTimeout(() => {
+                            progressBar.style.width = `${level}%`;
+                            progressBar.style.transition = 'width 1s ease-out';
+                        }, 200);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.8 });
+
+            const sections = ['about', 'skills', 'projects', 'training', 'certs', 'education', 'contact'];
+            const sidebarLinks = sections
+                .map(id => document.querySelector(`a[data-section-id="${id}"]`))
+                .filter(Boolean);
+
+            const sidebarObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const currentId = entry.target.id;
+                            sidebarLinks.forEach(link => {
+                                const isActive = link.getAttribute('data-section-id') === currentId;
+                                link.classList.toggle('active', isActive);
+                            });
+                        }
+                    });
+                },
+                { root: null, rootMargin: '-10% 0px -60% 0px', threshold: 0.2 }
+
+            );
+
+            sections.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) sidebarObserver.observe(element);
+            });
+            
+            // Execute the new skills setup
+            setupSkills();
+
+            // Attach the skill observer to the dynamically created bars
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                skillObserver.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>
